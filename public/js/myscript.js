@@ -160,7 +160,7 @@ function editor(value,fromBut,celltxt){
 function completer(value,fromBut,strike,celltxt){
   const compRequest = new XMLHttpRequest();
   console.log("in Comp button");
-  compRequest.open("POST",herou+"complete");
+  compRequest.open("POST",heroUrl+"complete");
   compRequest.setRequestHeader("Content-Type","application/json");
   console.log(value);
   if(fromBut){
