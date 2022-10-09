@@ -1,0 +1,92 @@
+<!-- 
+ -->
+<!DOCTYPE html>
+<head>
+    <title>Todo | login</title>
+</head>
+<style>
+    html{
+        height: 100%;
+    }
+    body{
+        
+        background-image: linear-gradient(to top,rgb(252, 241, 200),rgb(56, 204, 223));
+    }
+    .supermain{
+        display: flex;
+        height: 100%;
+        align-items: center;
+    justify-content: space-around;
+    }
+    .main{
+        margin-top: 15%;
+        border: 5px;
+        border-left-width: 0px;
+        border-top-width: 0;
+        border-style:groove;
+        border-bottom-color: rgb(161, 100, 1);
+        border-right-color: rgb(161, 100, 1);
+        max-width: 50%;
+        border-radius: 6px;
+        background-color: white;
+        /* background-image: linear-gradient(to top,rgb(1, 139, 212),rgb(178, 229, 252)); */
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    h1{
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+    input{
+        height: 27px;
+        max-width: 100%;
+        padding: 2px;
+        margin: 2px;
+        border:2px;
+        border-radius: 6px;
+        border-style: groove;
+        border-top: 0;
+        border-left: 0;
+        border-bottom-color: rgb(160, 130, 95);
+        border-right-color: rgb(160, 139, 95);
+        
+    }
+    #submit{
+        height: 30px;
+        width: 70px;
+        border-radius: 6px;
+        background-color: rgb(237, 148, 100);
+        color: white;
+        font-size: 15px;
+    }
+    #submit:hover{
+        background-color: rgb(232, 94, 40);
+    }
+    #link{
+        margin: 25px;
+    }
+    a{
+        font-style: italic;
+        color: rgba(122, 30, 5, 0.765);
+    }
+    a:hover{
+        color: rgb(3, 47, 131);
+    }
+</style>
+<body>
+    <div class="supermain">
+    <div class="main">
+        <h1>Sign Up</h1>
+        <form method="post" action="/signup"> 
+            <input placeholder="username" name="username"/><br>
+            <input placeholder="password" name="password"/><br>
+            <input id="submit" type="submit" value="Submit"/>
+        </form>
+    <div id="link">
+        Already have an account?  <a href="/login">login</a>
+    </div>
+    </div>
+</div>
+</body>
+

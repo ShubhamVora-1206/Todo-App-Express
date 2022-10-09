@@ -1,0 +1,1 @@
+[{"text":"adsv","strike":true},{"text":"mvh","strike":false}]
