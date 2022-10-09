@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/ShubhamVora-1206/Todo-App-Express#readme",
   "dependencies": {
+ "express": "*",
+    "express-session": "*"
     "nodemon": "^2.0.20"
   }
 }
