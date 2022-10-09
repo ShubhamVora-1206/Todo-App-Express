@@ -3,13 +3,14 @@ const ip = document.getElementById("ip");
 var strike=false;
 const save= document.getElementById("save");
 var fromBut=false;
+var heroUrl = "https://todoappexpresswithlogin.herokuapp.com/"
 ip.addEventListener("keypress",function(event){
   if(event.key=="Enter"){
   fromBut=true;
   const value = ip.value;
   const request = new XMLHttpRequest();
   console.log("Inside save, sending post request");
-  request.open("POST","http://localhost:3000/todo");
+  request.open("POST",heroUrl+"todo");
   request.setRequestHeader("Content-Type","application/json");
   request.send(JSON.stringify({text:value,strike:strike}));
 
@@ -31,7 +32,7 @@ ip.addEventListener("keypress",function(event){
 
 const getAllTodoRequests = new XMLHttpRequest();
 console.log("Sending get request");
-getAllTodoRequests.open("GET","http://localhost:3000/todo");
+getAllTodoRequests.open("GET",heroUrl+"todo");
 getAllTodoRequests.send();
 
 getAllTodoRequests.addEventListener("load",function(){
@@ -107,7 +108,7 @@ function taskDisplay(value,fromBut){
 function deleter(value,fromBut,Row){
   const delRequest = new XMLHttpRequest();
   console.log("inside delete btn event listner");
-  delRequest.open("POST","http://localhost:3000/delete");
+  delRequest.open("POST",heroUrl+"delete");
   delRequest.setRequestHeader("Content-Type","application/json");
   console.log(value);
   if (fromBut){
@@ -134,7 +135,7 @@ function deleter(value,fromBut,Row){
 function editor(value,fromBut,celltxt){
   const editRequest = new XMLHttpRequest();
   console.log("in edit btn");
-  editRequest.open("POST","http://localhost:3000/edit");
+  editRequest.open("POST",heroUrl+"edit");
   editRequest.setRequestHeader("Content-Type","application/json");
   console.log(value);
   var newValue = prompt("enter new value: ");
@@ -159,7 +160,7 @@ function editor(value,fromBut,celltxt){
 function completer(value,fromBut,strike,celltxt){
   const compRequest = new XMLHttpRequest();
   console.log("in Comp button");
-  compRequest.open("POST","http://localhost:3000/complete");
+  compRequest.open("POST",herou+"complete");
   compRequest.setRequestHeader("Content-Type","application/json");
   console.log(value);
   if(fromBut){

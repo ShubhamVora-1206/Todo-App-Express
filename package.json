@@ -1,7 +1,6 @@
 {
   "name": "practice",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,5 +12,14 @@
     "express": "*",
     "express-session": "*",
     "node-sass": "^7.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShubhamVora-1206/Todo-App-Express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShubhamVora-1206/Todo-App-Express/issues"
+  },
+  "homepage": "https://github.com/ShubhamVora-1206/Todo-App-Express#readme",
+  "description": ""
 }
