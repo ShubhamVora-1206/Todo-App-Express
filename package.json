@@ -1,25 +1,19 @@
 {
-  "name": "practice",
+  "name": "todo-app-express",
   "version": "1.0.0",
+  "description": "",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "*",
-    "express-session": "*",
-    "node-sass": "^7.0.3"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ShubhamVora-1206/Todo-App-Express.git"
   },
+  "author": "shubhamVora",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ShubhamVora-1206/Todo-App-Express/issues"
   },
-  "homepage": "https://github.com/ShubhamVora-1206/Todo-App-Express#readme",
-  "description": ""
+  "homepage": "https://github.com/ShubhamVora-1206/Todo-App-Express#readme"
 }
