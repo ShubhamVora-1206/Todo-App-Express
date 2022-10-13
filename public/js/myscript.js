@@ -3,7 +3,8 @@ const ip = document.getElementById("ip");
 var strike=false;
 const save= document.getElementById("save");
 var fromBut=false;
-var heroUrl = "https://todoappexpresswithlogin.herokuapp.com/"
+// var heroUrl = "https://todoappexpresswithlogin.herokuapp.com/"
+var heroUrl = "http://localhost:3000/"  //TODO CHANGE URL BEFORE DEPLOYMENT
 ip.addEventListener("keypress",function(event){
   if(event.key=="Enter"){
   fromBut=true;

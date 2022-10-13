@@ -3,6 +3,7 @@ const session = require("express-session");
 const app = express()
 const fs = require("fs");
 const port = process.env.PORT||5000;
+// const port = 3000;  //TODO Change before Deployement
 
 
 app.use(express.static("public"));
@@ -14,11 +15,14 @@ app.use(session({
 	saveUninitialized:true,
 	cookie:{secure:false}
 }))
+//setting middleware for templating
+app.set("view engine","ejs");
+app.set("views","./views");
 
 app.get('/', Home);
 app.get("/about",About);
 app.route("/todo").get(GetTodo).post(PostTodo);
-app.post("/delete",DeleteTodo);
+app.route("/delete").get(DeleteTodo).post(DeleteTodo);
 app.post("/edit",EditTodo);
 app.post("/complete",CompleteTodo);
 
@@ -35,6 +39,8 @@ app.route("/login").get(function(req,res){
 		})
 		if(user.length){
 			req.session.isLoggedIn = true;
+			console.log("user looks like ",user);
+			req.session.username = user[0].username;
 			res.redirect('/');
 		}
 		else{
@@ -48,6 +54,7 @@ app.route("/signup").get(function(req,res){
 	res.sendFile(__dirname+"/public/html/signup.html")
 }).post(function(req,res){
 	console.log(req.body);
+
 	saveUser(req.body,function(err){
 		if(err){
 			res.end("Something Went Horribly Wrong!");
@@ -70,7 +77,13 @@ app.listen(port, () => {
 
 function Home(req,res){
 	if(req.session.isLoggedIn){
-		res.sendFile(__dirname+"/public/html/index.html");
+		// res.sendFile(__dirname+"/public/html/index.html");
+		getTodos(function(err,todos){
+			const userTodo = todos.filter(function(todo){
+				return todo.createdBy === req.session.username;
+			});
+			res.render("home",{data:userTodo}); //home.ejs
+		})
 	}
 	else{
 		res.redirect("/login");
@@ -92,9 +105,14 @@ function GetTodo(req,res){
 
 function PostTodo(req,res){
 	console.log("In Post Todo");    //5
-	saveTodos(req.body,function(){
+	const todo = {
+		text: req.body.text,
+		createdBy: req.session.username,
+		strike:false
+	}
+	saveTodos(todo,function(){
 		console.log("in saveTodos");   //10
-		res.end();
+		res.redirect("/");
 	})
 }
 
@@ -103,7 +121,7 @@ function DeleteTodo(req,res){
 	console.log("req body: ",req.body);
 	delTodos(req.body,function(){
 		console.log("in delTodos");
-		res.end();
+		res.redirect("/");
 	})
 }
 
@@ -121,7 +139,7 @@ function CompleteTodo(req,res){
 	console.log("req body: ",req.body);
 	compTodos(req.body,function(){
 		console.log("in compTodos");
-		res.end();
+		res.redirect('/');
 	})
 }
 
@@ -159,7 +177,7 @@ function delTodos(todo,callback){
 	getTodos(function(err,todos){
 		console.log("getting todos");
 		console.log("B4 todo, todos: ",todo,todos);
-		todos.splice(todos.findIndex(a => a.text === todo.text) , 1);
+		todos.splice(todos.findIndex(a => a.text === todo.delete) , 1);
 		console.log("After todo,todos:",todo,todos);
 		//console.log("removed "+todo+" from db");
 		fs.writeFile("./dbfile.txt",JSON.stringify(todos),function(err){
@@ -194,7 +212,7 @@ function compTodos(todo,callback){
 	getTodos(function(err,todos){
 		console.log("completing..");
 		console.log("B4 todo,todos: ",todo,todos);
-		var index = todos.findIndex(a=>a.text==todo.text);
+		var index = todos.findIndex(a=>a.text==todo.strike);
 		try{
 
 		todos[index].strike = true;

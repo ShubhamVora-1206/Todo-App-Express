@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todos App</title>
+        <link rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/mystyle.css"/>
+    </head>
+    <body>
+        <nav>
+            <div class="topnav">
+                <h3>Welcome to Maybe-DO app!</h3>
+                <a  href="/logout"><h3>Logout</h3></a>
+            </div>
+        </nav>
+        <div class="row">
+            <div class="column" id="tasks">
+                <h1>TASK LIST</h1>
+                <p>Add tasks to your list by typing to the right and pressing
+                    enter. You may then view pending tasks below.
+                </p>
+                <table id="table1" align="center">
+                    <!-- <div id="parent"> -->
+                        <% data.forEach(function(todo){ %>
+                            <tr>
+                                <% if (todo.strike){ %>
+                                    <td><s><%= todo.text %></s></td>
+                                <% } %>
+                                <% if (!todo.strike){ %>
+                                    <td><%= todo.text %></td>
+                                <% }%>
+                                <td> 
+                                    <form method="post" action="/complete"> 
+                                        <button name="strike", type="submit", value=<%=todo.text %>><i class="fa fa-check"></i></button>
+                                    </form>
+                                    <!-- <button> <i class="fa fa-pencil"></i></button> -->
+                                    <form action="/delete" method="post">
+                                        <button name="delete" type="submit" value=<%=todo.text %>><i class="fa fa-trash"></i></button>
+                                    </form>
+                                    </td>
+            
+                            </tr>
+                        <%}) %>
+                        
+                <!-- </div> -->
+                </table>
+                
+            </div>
+            <div class="column" id="inputs">
+                <form action="/todo" method="post">
+                    <input id="ip" name="text" type="text" placeholder="I need to..." >
+                </form>
+            </div>
+        </div>
+        <!-- <script src="/js/myscript.js"></script> -->
+    </body>
+</html>
+
+
+
+
+
+<!-- Built By Shubham Vora -->
+
+
