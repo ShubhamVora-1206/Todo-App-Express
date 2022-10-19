@@ -82,7 +82,8 @@ function Home(req,res){
 			const userTodo = todos.filter(function(todo){
 				return todo.createdBy === req.session.username;
 			});
-			res.render("home",{data:userTodo}); //home.ejs
+			// res.render("partials/header",{data:req.session.username});
+			res.render("home",{data:userTodo,usname:req.session.username}); //home.ejs
 		})
 	}
 	else{

@@ -1,18 +1,6 @@
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Todos App</title>
-        <link rel="stylesheet"    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/mystyle.css"/>
-    </head>
-    <body>
-        <nav>
-            <div class="topnav">
-                <h3>Welcome to Maybe-DO app!</h3>
-                <a  href="/logout"><h3>Logout</h3></a>
-            </div>
-        </nav>
+<%- include('./partials/header',{data:usname}) %>
+        
         <div class="row">
             <div class="column" id="tasks">
                 <h1>TASK LIST</h1>
